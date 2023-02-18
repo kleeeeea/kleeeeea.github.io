@@ -6,11 +6,11 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Zhiyu&#39;s blog</title>
+  <title>Archives: 2016/8 | Zhiyu&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="Zhiyu&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/archives/2016/08/index.html">
 <meta property="og:site_name" content="Zhiyu&#39;s blog">
 <meta property="og:locale" content="en">
 <meta name="twitter:card" content="summary">
@@ -164,282 +164,34 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Reservoir-sampling" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/01/Reservoir-sampling/">Reservoir sampling</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/01/Reservoir-sampling/" class="archive-article-date">
-  	<time datetime="2017-09-01T05:10:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-01</time>
-</a>
-        
-      </header>
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Problem-Statement"><a href="#Problem-Statement" class="headerlink" title="Problem Statement"></a>Problem Statement</h1><p>Randomly choosing k items from a list S containing n items where n is too large or unknown.</p>
-<h1 id="Method-Reservoir-Sampling"><a href="#Method-Reservoir-Sampling" class="headerlink" title="Method: Reservoir Sampling"></a>Method: Reservoir Sampling</h1><p>Steps:</p>
-<ol>
-<li>keep the first item in memory</li>
-<li>for the next item i (i &gt; 1)<ul>
-<li>keep the new item with probability 1/i </li>
-<li>ignore the new item with probability 1 - 1/i </li>
-</ul>
-</li>
-</ol>
-<p>It is easy to prove that when there are n items, each item is kept with probability 1/n.</p>
-<h1 id="Python-Implementation"><a href="#Python-Implementation" class="headerlink" title="Python Implementation"></a>Python Implementation</h1><p>Suppose we have a long document but only keep 10 tokens from the document.</p>
-<pre><code>import random
-SAMPLE_COUNT = 10
-
-random.seed(2333)
-
-doc = &apos;&apos;&apos;Reservoir sampling is a family of randomized algorithms for randomly choosing a sample of k items from a list S containing n items, where n is either a very large or unknown number. Typically n is large enough that the list doesn&apos;t fit into main memory.&apos;&apos;&apos;
-
-tokens = doc.split(&apos; &apos;)
-
-sample_tokens = []
-for idx, token in enumerate(tokens):
-        # Generate the reservoir
-        if idx &lt; SAMPLE_COUNT:
-                sample_tokens.append(token)
-        else:
-                # Randomly replace elements in the reservoir
-                r = random.randint(0, idx)
-                if r &lt; SAMPLE_COUNT:
-                        sample_tokens[r] = token
-
-print(sample_tokens)
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
+    
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">algorithm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/01/Reservoir-sampling/">Show all >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2016" class="archive-year">2016</a>
         </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-dbpedia" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
+        <div class="archives">
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/27/dbpedia/">dbpedia</a>
-    </h1>
-  
-
-        
-        <a href="/2017/04/27/dbpedia/" class="archive-article-date">
-  	<time datetime="2017-04-27T03:12:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Limits-of-DBPedia-service"><a href="#Limits-of-DBPedia-service" class="headerlink" title="Limits of DBPedia service"></a>Limits of DBPedia service</h1><p><a href="https://medium.com/openlink-software-blog/dbpedia-usage-report-a78b3802a1d3" target="_blank" rel="noopener">from usage report</a></p>
-<ol>
-<li>Connection limit of 50 parallel connections per IP address.</li>
-<li>Rate limit of 100 requests per second per IP address, with an initial burst of 120 requests.</li>
-</ol>
-<p>Ideally, applications should be written to check the HTTP status code of each request, and in case of a 503 status code, perform a 1–2 second sleep before retrying the request.</p>
-<h1 id="Online-Access"><a href="#Online-Access" class="headerlink" title="Online Access"></a>Online Access</h1><p><a href="http://wiki.dbpedia.org/OnlineAccess" target="_blank" rel="noopener">ref</a></p>
-<p>We could use <a href="https://github.com/RDFLib/sparqlwrapper" target="_blank" rel="noopener">sparqlwrapper</a> to make requests:</p>
-<pre><code>from SPARQLWrapper import SPARQLWrapper, JSON
-
-sparql = SPARQLWrapper(&quot;http://dbpedia.org/sparql&quot;)
-sparql.setQuery(&quot;&quot;&quot;
-    PREFIX owl: &lt;http://www.w3.org/2002/07/owl#&gt;
-    PREFIX xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt;
-    PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
-    PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
-    PREFIX foaf: &lt;http://xmlns.com/foaf/0.1/&gt;
-    PREFIX dc: &lt;http://purl.org/dc/elements/1.1/&gt;
-    PREFIX : &lt;http://dbpedia.org/resource/&gt;
-    PREFIX dbpedia2: &lt;http://dbpedia.org/property/&gt;
-    PREFIX dbpedia: &lt;http://dbpedia.org/&gt;
-    PREFIX skos: &lt;http://www.w3.org/2004/02/skos/core#&gt;
-    SELECT ?abstract    
-    WHERE { &lt;http://dbpedia.org/resource/Asturias&gt; dbo:abstract ?abstract }
-&quot;&quot;&quot;)
-sparql.setReturnFormat(JSON)
-results = sparql.query().convert()
-print results[&apos;results&apos;][&apos;bindings&apos;][3][&apos;abstract&apos;][&apos;value&apos;]
-</code></pre><h1 id="SPARQL-Tutorial"><a href="#SPARQL-Tutorial" class="headerlink" title="SPARQL Tutorial"></a>SPARQL Tutorial</h1><ol>
-<li><a href="https://www.w3.org/2009/Talks/0615-qbe/" target="_blank" rel="noopener">SPARQL By Example</a></li>
-<li><a href="http://www.cambridgesemantics.com/semantic-university/sparql-by-example" target="_blank" rel="noopener">SPARQL By Example 2</a></li>
-<li><a href="https://www.slideshare.net/m_ackermann/d-bpedia-tutorialdublin2015" target="_blank" rel="noopener">DBpedia Tutorial</a></li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Knowledge Base</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">DBPedia</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/04/27/dbpedia/">Show all >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Free tools for collecting data from social network" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/24/Free tools for collecting data from social network/">Free tools for collecting data from social network</a>
-    </h1>
-  
-
-        
-        <a href="/2016/08/24/Free tools for collecting data from social network/" class="archive-article-date">
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2016/08/24/Free tools for collecting data from social network/" class="archive-article-date">
   	<time datetime="2016-08-24T09:27:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-08-24</time>
 </a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="BackTweets"><a href="#BackTweets" class="headerlink" title="BackTweets"></a>BackTweets</h1><p>BackTweets is a twitter time machine which enables you to search through a tweet history for tweets that link back to your site.</p>
-<ul>
-<li>Website: <a href="http://backtweets.com/" target="_blank" rel="noopener">http://backtweets.com/</a></li>
-</ul>
-<h1 id="Icerocket"><a href="#Icerocket" class="headerlink" title="Icerocket"></a>Icerocket</h1><p>Enter keywords to see mentions trended over time.</p>
-<ul>
-<li>Website: <a href="http://www.icerocket.com/" target="_blank" rel="noopener">http://www.icerocket.com/</a></li>
-</ul>
-<h1 id="Webhose"><a href="#Webhose" class="headerlink" title="Webhose"></a>Webhose</h1><ul>
-<li>Website: <a href="https://webhose.io" target="_blank" rel="noopener">https://webhose.io</a></li>
-<li>Python library: <a href="https://github.com/Buzzilla/webhose-python" target="_blank" rel="noopener">https://github.com/Buzzilla/webhose-python</a></li>
-</ul>
-<h1 id="Social-Searcher"><a href="#Social-Searcher" class="headerlink" title="Social Searcher"></a>Social Searcher</h1><p>Export to csv files easily.</p>
-<ul>
-<li>Website: <a href="https://www.social-searcher.com/" target="_blank" rel="noopener">https://www.social-searcher.com/</a></li>
-</ul>
-<h1 id="TipTop"><a href="#TipTop" class="headerlink" title="TipTop"></a>TipTop</h1><ul>
-<li>Website: <a href="http://feeltiptop.com/" target="_blank" rel="noopener">http://feeltiptop.com/</a></li>
-</ul>
-<p>search results are grouped into images, videos, and sentiment polarities.</p>
-<h1 id="Twazzup"><a href="#Twazzup" class="headerlink" title="Twazzup"></a>Twazzup</h1><p>real-time content from Twitter</p>
-<ul>
-<li>Website: <a href="http://twazzup.com/" target="_blank" rel="noopener">http://twazzup.com/</a></li>
-</ul>
-<h1 id="TweetReach"><a href="#TweetReach" class="headerlink" title="TweetReach"></a>TweetReach</h1><p>Export to csv files easily.</p>
-<ul>
-<li>Website: <a href="https://tweetreach.com" target="_blank" rel="noopener">https://tweetreach.com</a></li>
-</ul>
-<h1 id="Twitter-Search"><a href="#Twitter-Search" class="headerlink" title="Twitter Search"></a>Twitter Search</h1><p>allow advanced queries </p>
-<ul>
-<li>Website: <a href="https://twitter.com/search-home" target="_blank" rel="noopener">https://twitter.com/search-home</a></li>
-</ul>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/08/24/Free tools for collecting data from social network/">Free tools for collecting data from social network</a>
+    </h1>
+  
 
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -463,390 +215,19 @@ print results[&apos;results&apos;][&apos;bindings&apos;][3][&apos;abstract&apos;
 		</ul>
 	</div>
 
-      
+          
 
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/08/24/Free tools for collecting data from social network/">Show all >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
-    <article id="post-common knowledge bases" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
+  
+    </div></section>
+  
+
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/29/common knowledge bases/">Common Knowledge Base</a>
-    </h1>
-  
-
-        
-        <a href="/2016/04/29/common knowledge bases/" class="archive-article-date">
-  	<time datetime="2016-04-29T06:01:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Recently, I read a lot of papers making use of Wikipedia and also other different knowledge bases. Therefore, I collect some common ones which may be helpful for future use.</p>
-<h2 id="ConceptNet"><a href="#ConceptNet" class="headerlink" title="ConceptNet"></a>ConceptNet</h2><p>ConceptNet is a semantic network containing lots of things computers should know about the world, especially when understanding text written by people.</p>
-<h2 id="WordNet"><a href="#WordNet" class="headerlink" title="WordNet"></a>WordNet</h2><p>a lexical knowledge base of about 25,000 words grouped into an ontology of synsets</p>
-<h2 id="Freebase"><a href="#Freebase" class="headerlink" title="Freebase"></a>Freebase</h2><p>a social database of 1,450 concepts</p>
-<h2 id="WikiTaxonomy"><a href="#WikiTaxonomy" class="headerlink" title="WikiTaxonomy"></a>WikiTaxonomy</h2><p>a taxonomy of about 127,000 concepts extracted from Wikipedia’s category links</p>
-<h2 id="ProBase"><a href="#ProBase" class="headerlink" title="ProBase"></a>ProBase</h2><p>It contains about 12 million concepts learned iteratively from 1.68 billion web pages in Bing web repository.</p>
-<h2 id="GeoNames"><a href="#GeoNames" class="headerlink" title="GeoNames"></a>GeoNames</h2><p>It contains over 10 million geographical names and consists of over 9 million unique features whereof 2.8 million populated places and 5.5 million alternate names.</p>
-<h2 id="YAGO"><a href="#YAGO" class="headerlink" title="YAGO"></a>YAGO</h2><p>a semantic knowledge base of 149,162 instances derived from Wikipedia, WordNet and GeoNames, and ProBase </p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Dataset</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/29/common knowledge bases/">Show all >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-learn about wikipedia" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/11/learn about wikipedia/">Learn bout Wikipedia</a>
-    </h1>
-  
-
-        
-        <a href="/2016/03/11/learn about wikipedia/" class="archive-article-date">
-  	<time datetime="2016-03-11T09:02:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="1-MediaWiki-Markup-Language"><a href="#1-MediaWiki-Markup-Language" class="headerlink" title="1. MediaWiki Markup Language"></a>1. MediaWiki Markup Language</h1><p><a href="https://www.mediawiki.org/wiki/Help:Formatting" target="_blank" rel="noopener">link</a></p>
-<h1 id="2-Tools-for-parsing-Wikipedia"><a href="#2-Tools-for-parsing-Wikipedia" class="headerlink" title="2. Tools for parsing Wikipedia"></a>2. Tools for parsing Wikipedia</h1><ul>
-<li><a href="http://medialab.di.unipi.it/wiki/Wikipedia_Extractor" target="_blank" rel="noopener">Wikipedia Extractor</a></li>
-<li><a href="http://lintool.github.io/Cloud9/docs/content/wikipedia.html" target="_blank" rel="noopener">Cloud9</a></li>
-<li>other helps<ul>
-<li><a href="https://en.wikipedia.org/wiki/Wikipedia:Database_download" target="_blank" rel="noopener">database download</a></li>
-<li><a href="http://wikipapers.referata.com/wiki/List_of_data_processing_tools" target="_blank" rel="noopener">list of data processing tools</a></li>
-<li><a href="https://meta.wikimedia.org/wiki/Data_dumps" target="_blank" rel="noopener">about the dump</a></li>
-</ul>
-</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Text Mining</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Wikipedia</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/03/11/learn about wikipedia/">Show all >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Building-a-Real-Time-News-Search-Engine" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/10/Building-a-Real-Time-News-Search-Engine/">How to Build a Real-Time News Search Engine</a>
-    </h1>
-  
-
-        
-        <a href="/2016/03/10/Building-a-Real-Time-News-Search-Engine/" class="archive-article-date">
-  	<time datetime="2016-03-09T16:00:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Interesting-Info-from-Bloomberg"><a href="#Interesting-Info-from-Bloomberg" class="headerlink" title="Interesting Info from Bloomberg"></a>Interesting Info from Bloomberg</h1><p><a href="http://www.bloomberg.com/company/announcements/building-a-real-time-news-search-engine/" target="_blank" rel="noopener">blog</a><br><a href="https://www.youtube.com/watch?v=yO3SBU6vVKA" target="_blank" rel="noopener">youtube</a></p>
-<h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
-<li>delivers real-time search queries</li>
-<li>process alert requests </li>
-</ul>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><ul>
-<li>Using  <a href="http://www.confluent.io/blog/real-time-full-text-search-with-luwak-and-samza/" target="_blank" rel="noopener">Luwak library</a></li>
-<li>Reduce the number of queries by “pre-searcher”  </li>
-<li>Index documents into  in-memory index (<a href="https://lucene.apache.org/core/" target="_blank" rel="noopener">Lucene memory index</a>). There could be extentions for scoring particular alerts.</li>
-</ul>
-<h1 id="Real-time-full-text-search-with-Luwak-and-Samza"><a href="#Real-time-full-text-search-with-Luwak-and-Samza" class="headerlink" title="Real-time full-text search with Luwak and Samza"></a>Real-time full-text search with Luwak and Samza</h1><p><a href="http://www.confluent.io/blog/real-time-full-text-search-with-luwak-and-samza/" target="_blank" rel="noopener">link</a></p>
-<h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><ul>
-<li>Documents are changing</li>
-<li>Companies may want to monitor specific info</li>
-</ul>
-<h2 id="Open-Source-Tools"><a href="#Open-Source-Tools" class="headerlink" title="Open Source Tools"></a>Open Source Tools</h2><ul>
-<li><a href="https://github.com/flaxsearch/luwak" target="_blank" rel="noopener">Luwak</a>: a Lucene-based library for running many thousands of queries over a single document</li>
-<li><a href="http://samza.apache.org/" target="_blank" rel="noopener">Samza</a>: a stream processing framework based on <a href="http://kafka.apache.org/" target="_blank" rel="noopener">Kafka</a></li>
-</ul>
-<h2 id="Use-Luwak-and-Samza-to-Build-a-Streaming-Search-Engine"><a href="#Use-Luwak-and-Samza-to-Build-a-Streaming-Search-Engine" class="headerlink" title="Use Luwak and Samza to Build a Streaming Search Engine"></a>Use Luwak and Samza to Build a Streaming Search Engine</h2><p>Luwak: do efficient streaming search<br>     first register queries with Luwak, and then match documents against them.<br>     Luwak tells you which of the registered queries match the document.</p>
-<ol>
-<li>index the queries</li>
-</ol>
-<p>The index is a dictionary from terms to queries: it maps terms to queries containing that term.</p>
-<ol start="2">
-<li>processing the stream of documents</li>
-</ol>
-<p>For each document, we want to find all the queries that match.</p>
-<p>The trick is to take each document, and turn it into a query. Intuitively,“find me all the queries that match any of the words in this document”. </p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Search Engine</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Text Mining</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/03/10/Building-a-Real-Time-News-Search-Engine/">Show all >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/28/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2016/01/28/hello-world/" class="archive-article-date">
-  	<time datetime="2016-01-28T10:29:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-01-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>This is my new blog.<br>Previously, I usually took notes on <a href="https://www.gitbook.com/@zhiyu-chen/" target="_blank" rel="noopener">gitbook</a> because of its simplicity and allowing for systematic organization of content. Considering the chance of sharing something, I am trying to move here.</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Lifestyle</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/01/28/hello-world/">Show all >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-  
 
 
           </div>
@@ -868,9 +249,9 @@ print results[&apos;results&apos;][&apos;bindings&apos;][3][&apos;abstract&apos;
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
+		isHome: false,
 		isPost: false,
-		isArchive: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
